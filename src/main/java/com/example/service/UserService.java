@@ -8,7 +8,7 @@ public interface UserService {
 
     void addUser(User user) throws Exception;
 
-    Optional<User> getUser(long id);
+    User getUser(long id) throws Exception;
 
     
 

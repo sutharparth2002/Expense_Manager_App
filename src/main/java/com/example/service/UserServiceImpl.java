@@ -3,6 +3,7 @@ package com.example.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.example.entity.User;
@@ -28,8 +29,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> getUser(long id) {
-        return userRepository.findById(id);
+    public User getUser(long id) throws Exception {
+        User u=null;
+        try {
+            u= userRepository.findById(id).get();
+            
+        } catch (Exception e) {
+            throw error("User Not Found");
+        }
+        return u;
     }
 
     
